@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CivicfixApplication<civicfix>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.civicfix.civicfix.CivicfixApplication",
+            "projectName": "civicfix",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
