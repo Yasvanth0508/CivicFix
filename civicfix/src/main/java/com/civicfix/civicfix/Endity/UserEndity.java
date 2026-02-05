@@ -19,7 +19,7 @@ public class UserEndity
     
 	private String name;
 	private String email;
-	private String ph_no;
+	private String password;
 
 	
     

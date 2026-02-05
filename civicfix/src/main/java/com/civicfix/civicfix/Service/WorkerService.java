@@ -33,7 +33,8 @@ public class WorkerService
         if(existing != null)
         {
             existing.setName(newWorker.getName());
-            existing.setDepartment(newWorker.getDepartment());
+            existing.setEmail(newWorker.getEmail());
+            existing.setCategory(newWorker.getCategory());
             return workerRepository.save(existing);
         }
         return null;

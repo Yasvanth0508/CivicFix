@@ -8,38 +8,37 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/civicfix")
-public class IssueController
-{
+public class IssueController {
 	@Autowired
 	private IssueService issueService;
-	
+
 	@PostMapping("/issue/create")
-	public IssueEndity create(@RequestBody IssueEndity issue)
-	{
+	public IssueEndity create(@RequestBody IssueEndity issue) {
 		return issueService.createIssue(issue);
 	}
-	
+
 	@GetMapping("/issue/readall")
-	public List<IssueEndity> readAll()
-	{
+	public List<IssueEndity> readAll() {
 		return issueService.readAllIssues();
 	}
-	
+
 	@GetMapping("/issue/readbyid/{id}")
-	public IssueEndity readById(@PathVariable Long id)
-	{
+	public IssueEndity readById(@PathVariable Long id) {
 		return issueService.readIssueById(id);
 	}
-	
+
+	@GetMapping("/issue/readbycategory/{categoryId}")
+	public java.util.List<IssueEndity> readByCategory(@PathVariable Long categoryId) {
+		return issueService.getIssuesByCategoryId(categoryId);
+	}
+
 	@PutMapping("/issue/update/{id}")
-	public IssueEndity update(@PathVariable Long id, @RequestBody IssueEndity issue)
-	{
+	public IssueEndity update(@PathVariable Long id, @RequestBody IssueEndity issue) {
 		return issueService.updateIssue(id, issue);
 	}
-	
+
 	@DeleteMapping("/issue/delete/{id}")
-	public void delete(@PathVariable Long id)
-	{
+	public void delete(@PathVariable Long id) {
 		issueService.deleteIssue(id);
 	}
 }

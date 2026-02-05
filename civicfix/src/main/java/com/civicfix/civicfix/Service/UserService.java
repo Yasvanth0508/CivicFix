@@ -34,7 +34,7 @@ public class UserService
 		{
 			existingUser.setName(newUser.getName());
 			existingUser.setEmail(newUser.getEmail());
-			existingUser.setPh_no(newUser.getPh_no());
+			existingUser.setPassword(newUser.getPassword());
 			return userRepository.save(existingUser);
 		}
 		return null;
