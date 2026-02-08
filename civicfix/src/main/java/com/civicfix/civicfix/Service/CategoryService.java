@@ -22,24 +22,27 @@ public class CategoryService {
     }
 
     public CategoryEndity readCategoryById(Long id) {
-        return categoryRepository.findById(id).orElse(null);
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
     }
 
     public CategoryEndity updateCategory(Long id, CategoryEndity newCategory) {
 
         CategoryEndity existingCategory =
-                categoryRepository.findById(id).orElse(null);
+                categoryRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
 
-        if (existingCategory != null) {
-            existingCategory.setName(newCategory.getName());
-            existingCategory.setActive(newCategory.isActive());
-            return categoryRepository.save(existingCategory);
-        }
+        existingCategory.setName(newCategory.getName());
+        existingCategory.setActive(newCategory.isActive());
 
-        return null;
+        return categoryRepository.save(existingCategory);
     }
 
     public void deleteCategory(Long id) {
+        if (!categoryRepository.existsById(id)) {
+            throw new RuntimeException("Category not found with id: " + id);
+        }
+
         categoryRepository.deleteById(id);
     }
 }
