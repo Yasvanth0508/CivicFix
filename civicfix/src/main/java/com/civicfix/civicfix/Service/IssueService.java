@@ -7,6 +7,8 @@ import com.civicfix.civicfix.Repository.CategoryRepository;
 import com.civicfix.civicfix.Repository.IssueRepository;
 import com.civicfix.civicfix.Repository.UserRepository;
 
+import lombok.NonNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -22,7 +24,7 @@ public class IssueService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public IssueEndity createIssue(IssueEndity issue) {
+	public IssueEndity createIssue(@NonNull IssueEndity issue) {
 		if (issue.getCategory() != null && issue.getCategory().getId() != null) {
 			CategoryEndity category = categoryRepository.findById(issue.getCategory().getId())
 					.orElse(null);
@@ -60,11 +62,11 @@ public class IssueService {
 		return issueRepository.findAll();
 	}
 
-	public IssueEndity readIssueById(Long id) {
+	public IssueEndity readIssueById(@lombok.NonNull Long id) {
 		return issueRepository.findById(id).orElse(null);
 	}
 
-	public IssueEndity updateIssue(Long id, IssueEndity newIssue) {
+	public IssueEndity updateIssue(@lombok.NonNull Long id, IssueEndity newIssue) {
 		IssueEndity existingIssue = issueRepository.findById(id).orElse(null);
 		if (existingIssue != null) {
 			existingIssue.setTitle(newIssue.getTitle());
@@ -76,11 +78,11 @@ public class IssueService {
 		return null;
 	}
 
-	public void deleteIssue(Long id) {
+	public void deleteIssue(@lombok.NonNull Long id) {
 		issueRepository.deleteById(id);
 	}
 
-	public IssueEndity updateIssueStatus(Long id, String status) {
+	public IssueEndity updateIssueStatus(@lombok.NonNull Long id, String status) {
 		IssueEndity existingIssue = issueRepository.findById(id).orElse(null);
 		if (existingIssue != null) {
 			existingIssue.setStatus(status);
