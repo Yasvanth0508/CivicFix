@@ -1,4 +1,4 @@
-package com.civicfix.civicfix.Endity;
+package com.civicfix.civicfix.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

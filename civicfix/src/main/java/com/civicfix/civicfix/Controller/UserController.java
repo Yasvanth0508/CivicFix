@@ -1,45 +1,30 @@
-package com.civicfix.civicfix.Controller;
+package com.civicfix.civicfix.controller;
 
-import com.civicfix.civicfix.Endity.UserEndity;
-import com.civicfix.civicfix.Service.UserService;
+import com.civicfix.civicfix.entity.UserEndity;
+import com.civicfix.civicfix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+import com.civicfix.civicfix.auth.service.AuthService;
 
 @RestController
-@RequestMapping("/civicfix")
-public class UserController
-{
+@RequestMapping("/auth")
+public class UserController {
 	@Autowired
 	private UserService userService;
-	
-	@PostMapping("/user/create")
-	public UserEndity create(@RequestBody UserEndity user)
-	{
-		return userService.createUser(user);
+	@Autowired
+	private AuthService authService;
+
+	@PostMapping("/user/register")
+	public UserEndity create(@RequestBody UserEndity user) {
+		UserEndity savedUser = userService.createUser(user);
+
+		authService.createUserAuth(
+				user.getEmail(),
+				user.getPassword(),
+				savedUser.getId() // use your actual user ID getter
+		);
+		return savedUser;
+
 	}
-	
-	@GetMapping("/user/readall")
-	public List<UserEndity> readAll()
-	{
-		return userService.readAllUsers();
-	}
-	
-	@GetMapping("/user/readbyid/{id}")
-	public UserEndity readById(@PathVariable Long id)
-	{
-		return userService.readUserById(id);
-	}
-	
-	@PutMapping("/user/update/{id}")
-	public UserEndity update(@PathVariable Long id, @RequestBody UserEndity user)
-	{
-		return userService.updateUser(id, user);
-	}
-	
-	@DeleteMapping("/user/delete/{id}")
-	public void delete(@PathVariable Long id)
-	{
-		userService.deleteUser(id);
-	}
+
 }

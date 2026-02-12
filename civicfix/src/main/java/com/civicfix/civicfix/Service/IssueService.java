@@ -1,11 +1,11 @@
-package com.civicfix.civicfix.Service;
+package com.civicfix.civicfix.service;
 
-import com.civicfix.civicfix.Endity.CategoryEndity;
-import com.civicfix.civicfix.Endity.IssueEndity;
-import com.civicfix.civicfix.Endity.UserEndity;
-import com.civicfix.civicfix.Repository.CategoryRepository;
-import com.civicfix.civicfix.Repository.IssueRepository;
-import com.civicfix.civicfix.Repository.UserRepository;
+import com.civicfix.civicfix.entity.CategoryEndity;
+import com.civicfix.civicfix.entity.IssueEndity;
+import com.civicfix.civicfix.entity.UserEndity;
+import com.civicfix.civicfix.repository.CategoryRepository;
+import com.civicfix.civicfix.repository.IssueRepository;
+import com.civicfix.civicfix.repository.UserRepository;
 
 import lombok.NonNull;
 

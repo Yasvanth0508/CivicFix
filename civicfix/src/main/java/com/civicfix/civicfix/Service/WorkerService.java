@@ -1,50 +1,39 @@
-package com.civicfix.civicfix.Service;
+package com.civicfix.civicfix.service;
 
-import com.civicfix.civicfix.Endity.WorkerEndity;
-import com.civicfix.civicfix.Repository.WorkerRepository;
+import com.civicfix.civicfix.entity.CategoryEndity;
+import com.civicfix.civicfix.entity.WorkerEndity;
+import com.civicfix.civicfix.repository.WorkerRepository;
+import com.civicfix.civicfix.repository.CategoryRepository;
 
-import lombok.NonNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class WorkerService
 {
     @Autowired
     private WorkerRepository workerRepository;
+    @Autowired
+    private CategoryRepository CategoryRepository;
 
-    public WorkerEndity createWorker(@NonNull WorkerEndity worker)
-    {
+    public WorkerEndity createWorker(
+            String name,
+            String email,
+            Long categoryId
+    ) {
+        CategoryEndity category = CategoryRepository
+                .findById(categoryId)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        WorkerEndity worker = new WorkerEndity();
+        worker.setName(name);
+        worker.setEmail(email);
+        worker.setCategory(category);
+
         return workerRepository.save(worker);
     }
 
-    public List<WorkerEndity> readAllWorkers()
-    {
-        return workerRepository.findAll();
-    }
 
-    public WorkerEndity readWorkerById(@NonNull Long id)
-    {
-        return workerRepository.findById(id).orElse(null);
-    }
-
-    public WorkerEndity updateWorker(@NonNull Long id, WorkerEndity newWorker)
-    {
-        WorkerEndity existing = workerRepository.findById(id).orElse(null);
-        if(existing != null)
-        {
-            existing.setName(newWorker.getName());
-            existing.setEmail(newWorker.getEmail());
-            existing.setCategory(newWorker.getCategory());
-            return workerRepository.save(existing);
-        }
-        return null;
-    }
-
-    public void deleteWorker(@NonNull Long id)
-    {
-        workerRepository.deleteById(id);
-    }
+    
 }

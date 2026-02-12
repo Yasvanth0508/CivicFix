@@ -1,7 +1,7 @@
-package com.civicfix.civicfix.Service;
+package com.civicfix.civicfix.service;
 
-import com.civicfix.civicfix.Endity.CategoryEndity;
-import com.civicfix.civicfix.Repository.CategoryRepository;
+import com.civicfix.civicfix.entity.CategoryEndity;
+import com.civicfix.civicfix.repository.CategoryRepository;
 
 import lombok.NonNull;
 

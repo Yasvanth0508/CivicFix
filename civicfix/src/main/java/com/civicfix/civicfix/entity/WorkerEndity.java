@@ -1,4 +1,4 @@
-package com.civicfix.civicfix.Endity;
+package com.civicfix.civicfix.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +19,6 @@ public class WorkerEndity
     private Long id;
     private String name;
     private String email;
-    private String password;
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private CategoryEndity category;

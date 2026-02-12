@@ -1,6 +1,6 @@
-package com.civicfix.civicfix.Repository;
+package com.civicfix.civicfix.repository;
 
-import com.civicfix.civicfix.Endity.UserEndity;
+import com.civicfix.civicfix.entity.UserEndity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
